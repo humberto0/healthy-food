@@ -40,7 +40,7 @@ export const Container = styled.div<ContainerProps>`
   ${props =>
     props.isFilled &&
     css`
-      color: #ff9000;
+      color: #1d164d;
     `}
   input {
     background: transparent;
@@ -58,7 +58,10 @@ export const Container = styled.div<ContainerProps>`
   }
 
   @media (max-width: 900px) {
-    width: 100%;
+    width: 80%;
+  }
+  @media (max-width: 409px) {
+    width: 70%;
   }
 `;
 

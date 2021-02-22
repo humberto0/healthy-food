@@ -28,39 +28,49 @@ export const Header = styled.header`
   }
 
   a {
-    position: relative;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    width: 150px;
-    padding: 10px 5px;
-    border-radius: 5px;
-    color: #f4ede8;
-    font-weight: 400;
-    text-align: center;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    cursor: pointer;
-    text-decoration: none;
+    &.title {
+      position: relative;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      width: 150px;
+      padding: 10px 5px;
+      border-radius: 5px;
+      color: #f4ede8;
+      font-weight: 400;
+      text-align: center;
+      font-size: 16px;
+      transition: background-color 0.3s;
+      cursor: pointer;
+      text-decoration: none;
 
-    &:hover {
-      color: #badc58;
-      background: #f4ede8;
+      &:hover {
+        color: #badc58;
+        background: #f4ede8;
+      }
     }
   }
 
   @media (max-width: 1050px) {
     a {
-      display: none;
-      background: none;
+      &.title {
+        display: none;
+        background: none;
+      }
+    }
+    p {
+      font-size: 25px;
+      margin-right: 10%;
     }
   }
-  @media (max-width: 300px) {
-    min-height: 0;
-    margin-top: 0;
-    padding: 0 0;
-    img {
-      height: 40px;
+  @media (max-width: 413px) {
+    p {
+      padding-right: 5px;
+    }
+  }
+  @media (max-width: 361px) {
+    p {
+      padding-right: 0;
     }
   }
 `;
@@ -70,8 +80,7 @@ export const StyledMenu = styled.nav<{ open: boolean }>`
   height: 100vh;
   width: 35vw;
   position: fixed;
-  background-color: rgba(0, 0, 3, 0.85);
-  z-index: 1;
+  background-color: rgb(250, 250, 252, 0.8);
 
   display: flex;
   flex-direction: column;
@@ -79,6 +88,7 @@ export const StyledMenu = styled.nav<{ open: boolean }>`
 
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
+
   a {
     padding: 0 2rem;
     font-weight: 700;
@@ -86,14 +96,16 @@ export const StyledMenu = styled.nav<{ open: boolean }>`
     font-size: 20.5px;
     background: transparent;
     width: 100%;
-    color: #f1eded;
+    color: #badc58;
     text-decoration: none;
     cursor: pointer;
+
     & + a {
       margin-top: 16px;
     }
+
     &:hover {
-      color: #ff9000;
+      color: #8aa93d;
     }
   }
 
@@ -101,5 +113,3 @@ export const StyledMenu = styled.nav<{ open: boolean }>`
     width: 100%;
   }
 `;
-
-export const StyledLink = styled.a``;

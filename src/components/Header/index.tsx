@@ -15,16 +15,16 @@ const Menu: React.FC = () => {
     <Container>
       <Header ref={node}>
         <p>HEALTHY RECIPES</p>
-        <HashLink to="#pag-1" type="submit">
+        <HashLink to="#pag-1" className="title" type="submit">
           HEALTHY RECIPES
         </HashLink>
-        <HashLink to="#pag-2" type="submit">
+        <HashLink to="#pag-2" className="title" type="submit">
           BLOG
         </HashLink>
-        <Link to="/join" type="submit">
+        <HashLink to="#pag-3" className="title" type="submit">
           JOIN
-        </Link>
-        <Link to="/register" type="submit">
+        </HashLink>
+        <Link to="/register" className="title" type="submit">
           REGISTER
         </Link>
         <StyledMenu open={open}>
@@ -34,10 +34,10 @@ const Menu: React.FC = () => {
           <HashLink to="#pag-2" onClick={() => close()}>
             BLOG
           </HashLink>
-          <Link to="/contacts" onClick={() => close()}>
+          <HashLink to="#pag-3" onClick={() => close()}>
             JOIN
-          </Link>
-          <Link to="/signUp" onClick={() => close()}>
+          </HashLink>
+          <Link to="/register" onClick={() => close()}>
             REGISTER
           </Link>
         </StyledMenu>
