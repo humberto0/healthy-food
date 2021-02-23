@@ -49,5 +49,8 @@ export const StyledHamburger = styled.button<{ open: boolean }>`
     left: ${({ open }) => (open ? 'initial' : '3vw')};
     right: ${({ open }) => (open ? '2vw' : 'initial')};
     margin-left: 80%;
+    div{
+      background-color: ${({ open }) => (open ? '#badc58' : '#badc58')};
+    }
   }
 `;

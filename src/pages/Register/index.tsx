@@ -8,13 +8,16 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import { Container, Content, Background, AnimationContainer } from './styles';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import { useToast } from '../../hooks/Toast';
 import api from '../../services/api';
 
 interface SignUpFormData {
   nome: string;
   date: string;
   cep: string;
+  logradouro: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
 }
 interface Repository {
   logradouro: string;
@@ -22,19 +25,18 @@ interface Repository {
   localidade: string;
   uf: string;
 }
-
 const Register: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const { addToast } = useToast();
-  const [repositories, setRepositories] = useState<Repository[]>([]);
   const [logradouro, setLogradouro] = useState<string>('');
-  const [newRepo, setNewRepo] = useState([]);
+  const [bairro, setBairro] = useState<string>('');
+  const [cidade, setCidade] = useState<string>('');
+  const [estado, setEstado] = useState<string>('');
   const handleSubmit = useCallback(
     async (data: SignUpFormData) => {
       try {
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
-          name: Yup.string()
+          nome: Yup.string()
             .required('Nome obrigatório')
             .max(50, 'No maximo 50 caracteres')
             .min(10, 'No minimo 10 caracteres'),
@@ -52,6 +54,18 @@ const Register: React.FC = () => {
         const valor: string = data.cep;
         const response = await api.get<Repository>(`ws/${valor}/json/`);
         const repository= response.data;
+        setLogradouro(repository.logradouro);
+        setBairro(repository.bairro);
+        setCidade(repository.localidade);
+        setEstado(repository.uf);
+
+        localStorage.setItem('nome', data.nome);
+        localStorage.setItem('data', data.date)
+        localStorage.setItem('cep', data.cep);
+        localStorage.setItem('bairro', repository.bairro);
+        localStorage.setItem('cidade', repository.localidade);
+        localStorage.setItem('estado', repository.uf);
+
 
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -60,8 +74,7 @@ const Register: React.FC = () => {
           formRef.current?.setErrors(errors);
         }
       }
-    },
-    [addToast],
+    }, [],
   );
 
   return (
@@ -72,7 +85,7 @@ const Register: React.FC = () => {
           <AnimationContainer>
             <Form ref={formRef} onSubmit={handleSubmit} >
               <h1>Cadastre-se</h1>
-              <Input name="name" icon={FiUser} placeholder="Nome" />
+              <Input name="nome" icon={FiUser} placeholder="Nome" />
               <Input
                 name="date"
                 type="date"
@@ -89,24 +102,28 @@ const Register: React.FC = () => {
                 name="logradouro"
                 icon={FiMapPin}
                 placeholder="Logradouro"
+                value={logradouro}
                 disabled
               />
               <Input
                 name="bairro"
                 icon={FiMapPin}
                 placeholder="Bairro"
+                value={bairro}
                 disabled
               />
               <Input
                 name="cidade"
                 icon={FiMapPin}
                 placeholder="Cidade"
+                value={cidade}
                 disabled
               />
               <Input
                 name="estado"
                 icon={FiMapPin}
                 placeholder="Estado"
+                value={estado}
                 disabled
               />
               <Button type="submit" style={{ marginTop: '20px' }}>
