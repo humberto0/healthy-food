@@ -2,6 +2,15 @@
 
 HealthyEats is a website that provides information on healthy food options. It is a responsive website, meaning it can adapt to different screen sizes, making it accessible on any device.
 
+### Home 
+
+![Captura de tela de 2023-04-04 17-34-42](https://user-images.githubusercontent.com/15384670/229919973-382d0e58-d669-4576-af46-a29c2de85218.png)
+
+### Register
+
+![Captura de tela de 2023-04-04 17-35-11](https://user-images.githubusercontent.com/15384670/229920151-ed0cdab0-b66d-43f4-aaf2-9d569131898a.png)
+
+
 ## Features
 
 HealthyEats offers the following features:
